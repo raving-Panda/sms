@@ -1,12 +1,36 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <script defer="defer" src="main.js"></script>
+	%sveltekit.head%
+ </head>
+  <body data-sveltekit-preload-data="hover" class="app">
+    
+    
+    
+
+    
+    
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <script>
+      window.addEventListener('load', function load() {
+        const loader = document.getElementById('loader');
+        setTimeout(function() {
+            loader.classList.add('fadeOut');
+        }, 300);
+      });
+    </script>
+	%sveltekit.body%
+
 	</body>
 </html>
