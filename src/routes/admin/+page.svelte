@@ -4,9 +4,6 @@
 	import Topbar from "$lib/admin/topbar.svelte";
     
 </script>
-    <!-- @App Content -->
-    <!-- =================================================== -->
-    <div>
       <Sidebar/>
       <!-- #Main ============================ -->
       <div class="page-container">
@@ -23,4 +20,3 @@
         </main>
         <Footer/>
       </div>
-    </div>
