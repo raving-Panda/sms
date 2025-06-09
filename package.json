@@ -6,11 +6,12 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "npm run build && wrangler pages dev",
+		"preview": "npm run build && npx wrangler pages dev .svelte-kit/cloudflare",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
-		"deploy": "npm run build && wrangler pages deploy"
+		"deploy": "npm run build && wrangler pages deploy",
+		"wrangle":"npx wrangler pages dev .svelte-kit/cloudflare"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",
