@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+
 import { getMessaging } from "firebase/messaging/sw";
 
 // Initialize the Firebase app in the service worker by passing in

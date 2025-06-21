@@ -7,7 +7,7 @@ import {
     signOut
 } from 'firebase/auth';
 import { readable, writable } from 'svelte/store';
-import { getMessaging } from "firebase/messaging";
+import { getMessaging,getToken } from "firebase/messaging";
 const firebase_config = {
   apiKey: "AIzaSyCQCjYFhCMTDT1k4AL69WplhBDzoCQpRKY",
   authDomain: "koseli-511a0.firebaseapp.com",
@@ -23,8 +23,33 @@ const firebase_config = {
 const firebaseApp = initializeApp(firebase_config);
 
 const auth = getAuth();
+   
+export async function token() {
+    
+ const messaging =getMessaging(firebaseApp);
+    getToken(messaging, {vapidKey: "BBIHepxfbBzPFzhtDJKA8FKJ3cSkzTeHHlgCIXd0Gh6oVfX0G4cknxC9HrcFwrBL3InL-SClRpSFR2Z6vV1JDPA"}).then((currentToken) => {
+    if (currentToken) {
+    
+        userState.token = currentToken;
+        
+    } else {
+        // Show permission request UI
+        userState.token = "Dummy token 2"
+        console.log('No registration token available. Request permission to generate one.');
+        // ...
+    }
+    }).catch((err) => {
+    console.log('An error occurred while retrieving token. ', err);
+    // ...
+    }); 
 
-const messaging = getMessaging(firebaseApp);
+messaging.setBackgroundMessageHandler(function(payload){
+  const title = "Hello World";
+  const option = { body: payload.data.status }
+  return self.registration.showNotification(title,option);
+});
+    
+}
 export async function loginWithGoogle() {
     return await signInWithPopup(auth, new GoogleAuthProvider());
 }
@@ -46,19 +71,3 @@ export const user = readable(
         })
 );
 
-
-getToken(messaging, {vapidKey: "BBIHepxfbBzPFzhtDJKA8FKJ3cSkzTeHHlgCIXd0Gh6oVfX0G4cknxC9HrcFwrBL3InL-SClRpSFR2Z6vV1JDPA"}).then((currentToken) => {
-  if (currentToken) {
-  
-    userState.token = currentToken;
-    
-  } else {
-    // Show permission request UI
-    userState.token = "Dummy token 2"
-    console.log('No registration token available. Request permission to generate one.');
-    // ...
-  }
-}).catch((err) => {
-  console.log('An error occurred while retrieving token. ', err);
-  // ...
-}); 

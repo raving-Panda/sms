@@ -1,6 +1,6 @@
 <script>
 
-	import { loginWithGoogle, logout, user } from '$lib/fireb';
+	import { loginWithGoogle, logout, user, token } from '$lib/fireb';
     import { userState } from "$lib/state.svelte";
     $: if($user!=null)userState.name = $user.displayName
 </script>
@@ -32,10 +32,7 @@
               </a>
             </li>
             <li>
-              <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                <i class="ti-email mR-10"></i>
-                <span>Messages</span>
-              </a>
+              <button onclick={token}>token</button>
             </li>
             <li role="separator" class="divider"></li>
             <li>
@@ -43,10 +40,10 @@
                 
                 <span>
               {#if $user}
-                <button on:click={logout}><i class="ti-power-off mR-10"></i>Logout</button>
+                <button onclick={logout}><i class="ti-power-off mR-10"></i>Logout</button>
 
               {:else}
-                <button on:click={loginWithGoogle}>Signin with Google</button>
+                <button onclick={loginWithGoogle}>Signin with Google</button>
               {/if}
                 </span>
                     </a>
