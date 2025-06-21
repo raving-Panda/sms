@@ -3,8 +3,6 @@
 	import Information from "$lib/admin/information.svelte";
 	import Sidebar from "$lib/admin/sidebar.svelte";
 	import Topbar from "$lib/admin/topbar.svelte";
-  // export let data;
-  const token = "dlfkgjdfkgdfkljgldfkjgkldfjgklfdjgkl"
 </script>
 <svelte:head>
     <title>Blank2</title>
@@ -20,7 +18,7 @@
           <div id='mainContent'>
             <div class="full-container">
               
-              <Information {token}/>
+              <Information/>
               
             </div>
           </div>
