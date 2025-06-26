@@ -7,7 +7,9 @@ import {
     signOut
 } from 'firebase/auth';
 import { readable, writable } from 'svelte/store';
-import { getMessaging,getToken } from "firebase/messaging";
+import { getMessaging,getToken} from "firebase/messaging";
+import { userState } from './state.svelte';
+
 const firebase_config = {
   apiKey: "AIzaSyCQCjYFhCMTDT1k4AL69WplhBDzoCQpRKY",
   authDomain: "koseli-511a0.firebaseapp.com",
@@ -42,12 +44,6 @@ export async function token() {
     console.log('An error occurred while retrieving token. ', err);
     // ...
     }); 
-
-messaging.setBackgroundMessageHandler(function(payload){
-  const title = "Hello World";
-  const option = { body: payload.data.status }
-  return self.registration.showNotification(title,option);
-});
     
 }
 export async function loginWithGoogle() {

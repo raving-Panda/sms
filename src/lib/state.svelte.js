@@ -1,5 +1,5 @@
 export const userState = $state({
-	token: 'dummy token',
+	token: 'off',
     name:"Jane Doe"
 	/* ... */
 });

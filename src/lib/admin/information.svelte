@@ -1,6 +1,7 @@
 <script>
 	import NameForm from "./name_form.svelte";
   import { userState } from "$lib/state.svelte";
+  import { token } from "$lib/fireb";
 </script>
 
 
@@ -9,11 +10,11 @@
 
               <div class="masonry-item col-md-6">
                 <div class="bgc-white p-20 bd">
-                  <h6 class="c-grey-900">Token</h6>
+                  <h6 class="c-grey-900">Notification : {#if userState.token != "off"} ON {:else} OFF {/if}</h6>
                   <div class="mT-30">
                     <div class="peer">
-                            <span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-green-50 c-green-500">{userState.token}</span>
-                          </div>
+                        <button type="button" onclick={token} class="btn cur-p btn-primary btn-color">Register</button>
+                      </div>
                   </div>
                 </div>
               </div>
